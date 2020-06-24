@@ -26,9 +26,11 @@ public class DatabaseConfiguration {
         return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("onlinelibrary").build();
     }
 
-
     @Bean
-    public EntityManagerFactory entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+    public EntityManagerFactory entityManagerFactory(
+            DataSource dataSource,
+            JpaVendorAdapter jpaVendorAdapter
+    ) {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);

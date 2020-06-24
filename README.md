@@ -1,29 +1,30 @@
-# Getting Started
+## Online Library 
 
-### Reference Documentation
-For further reference, please consider the following sections:
+Implementation of online library.
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/gradle-plugin/reference/html/#build-image)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-jpa-and-spring-data)
-* [Spring for Apache Kafka](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-kafka)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-security)
+Prerequisites
+-------------
+1. install gradle
+1. install docker-compose
+1. install git
+1. clone repository: `git clone --https://github.com/PeterHolub/onlinelibrary.git`
+### Database initialization
 
-### Guides
-The following guides illustrate how to use some features concretely:
+Build and run docker container with database:
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
+```
+docker-compose up
+```
+You should be able to connect to the database with following connectors:
 
-### Additional Links
-These additional references should also help you:
+- Host:       **localhost**
+- Port:       **3333**
+- Database:   **onlinelibrary**
+- User:       **postgres**
+- Password:   **postgres**
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+### Database table creation or update
+Create and update tables with Liquibase and Gradle task
+```
+gradle task update dev db
+```
