@@ -26,5 +26,5 @@ You should be able to connect to the database with following connectors:
 ### Database table creation or update
 Create and update tables with Liquibase and Gradle task
 ```
-gradle task update dev db
+gradle update
 ```
