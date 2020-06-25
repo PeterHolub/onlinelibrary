@@ -15,7 +15,7 @@
     <changeSet id="2" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/002-create-book-genres-table.sql"
+                path="scripts/002-create-genres-table.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
@@ -77,7 +77,42 @@
     <changeSet id="11" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/011-fill-database-with-test-data.sql"
+                path="scripts/011-fill-authors-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="12" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/012-fill-users-and-roles.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="13" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/013-fill-genres-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="13" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/013-fill-genres-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="14" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/014-fill-books-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="15" author="onlinelibrary">
+        <createProcedure
+                dbms="postgresql"
+                path="scripts/015-fill-content.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 </databaseChangeLog>

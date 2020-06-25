@@ -2,6 +2,9 @@ version: '3'
 services:
   database:
     image: "postgres" # use latest official postgres version
+    volumes:
+      - ./images:/docker-entrypoint-initdb.d/images
+      - ./books:/docker-entrypoint-initdb.d/books
     ports:
       - "3333:5432"
     env_file:
