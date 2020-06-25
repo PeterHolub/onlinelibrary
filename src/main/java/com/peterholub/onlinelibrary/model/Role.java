@@ -5,15 +5,15 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "groups")
-public class Group {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "group_id")
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "name")
     private String groupName;
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "role")
     private Set<User> users;
 
     public Long getId() {
@@ -44,7 +44,7 @@ public class Group {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group that = (Group) o;
+        Role that = (Role) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(groupName, that.groupName) &&
                 Objects.equals(users, that.users);

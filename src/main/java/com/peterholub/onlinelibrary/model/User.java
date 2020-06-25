@@ -8,15 +8,15 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "login")
     private String login;
-    @Column
+    @Column(name = "password")
     private String password;
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public Long getId() {
         return id;
@@ -42,28 +42,27 @@ public class User {
         this.password = password;
     }
 
-    public Group getGroup() {
-        return group;
+    public Role getRole() {
+        return role;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setRole(Role role) {
+        this.role = role;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User that = (User) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(login, that.login) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(group, that.group);
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, group);
+        return Objects.hash(id, login, password, role);
     }
 }

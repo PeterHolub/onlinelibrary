@@ -1,6 +1,6 @@
 package com.peterholub.onlinelibrary.service.impl;
 
-import com.peterholub.onlinelibrary.model.Group;
+import com.peterholub.onlinelibrary.model.Role;
 import com.peterholub.onlinelibrary.repository.GroupRepository;
 import com.peterholub.onlinelibrary.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ public class GroupServiceImpl implements GroupService {
     private GroupRepository groupRepository;
 
     @Override
-    public Group getGroup(Serializable id) {
+    public Role getGroup(Serializable id) {
         return groupRepository.getOne((Long) id);
     }
 
     @Override
-    public void createGroup(Group group) {
-        groupRepository.save(group);
+    public void createGroup(Role role) {
+        groupRepository.save(role);
     }
 
     @Override
-    public void updateGroup(Group group) {
-        groupRepository.save(group);
+    public void updateGroup(Role role) {
+        groupRepository.save(role);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<Group> getAllGroups() {
+    public List<Role> getAllGroups() {
         return groupRepository.findAll();
     }
 }

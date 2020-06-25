@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "book_genre")
+@Table(name = "books_genres")
 public class BookGenre {
     @EmbeddedId
     private BookGenreKey key;

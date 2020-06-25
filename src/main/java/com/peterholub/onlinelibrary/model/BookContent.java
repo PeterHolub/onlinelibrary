@@ -8,12 +8,13 @@ import java.util.Objects;
 @Table(name = "books_content")
 public class BookContent {
     @Id
-    @Column(name = "book_content_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @OneToOne(mappedBy = "bookContent")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
     private Book book;
-    @Column
+    @Column(name = "content")
     private byte[] content;
 
     public Long getId() {

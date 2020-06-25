@@ -1,12 +1,83 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include
-            file="scripts/001-create-authors-table.sql"
-            relativeToChangelogFile="true"/>
 
+    <changeSet id="1" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/001-create-authors-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="2" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/002-create-book-genres-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="3" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/003-create-roles-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="4" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/004-create-books-image-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="5" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/005-create-books-content-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="6" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/006-create-books-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="7" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/007-create-users-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="8" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/008-create-favorites-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="9" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/009-create-books-genres-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="10" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/010-create-constrains.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="11" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/011-fill-database-with-test-data.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>

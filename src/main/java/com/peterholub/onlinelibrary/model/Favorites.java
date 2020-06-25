@@ -10,7 +10,6 @@ import java.util.Objects;
 public class Favorites {
     @EmbeddedId
     private FavoritesKey key;
-
     @ManyToOne
     @MapsId("user_id")
     @JoinColumn(name = "user_id")
@@ -19,6 +18,16 @@ public class Favorites {
     @MapsId("book_id")
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column(name = "user_rating")
+    private Integer userRating;
+
+    public Integer getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(Integer userRating) {
+        this.userRating = userRating;
+    }
 
     public FavoritesKey getKey() {
         return key;
@@ -51,11 +60,12 @@ public class Favorites {
         Favorites favorites = (Favorites) o;
         return Objects.equals(key, favorites.key) &&
                 Objects.equals(user, favorites.user) &&
-                Objects.equals(book, favorites.book);
+                Objects.equals(book, favorites.book) &&
+                Objects.equals(userRating, favorites.userRating);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, user, book);
+        return Objects.hash(key, user, book, userRating);
     }
 }

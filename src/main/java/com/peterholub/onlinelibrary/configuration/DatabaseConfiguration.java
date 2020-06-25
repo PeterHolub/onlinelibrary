@@ -22,11 +22,6 @@ import javax.sql.DataSource;
 public class DatabaseConfiguration {
 
     @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("onlinelibrary").build();
-    }
-
-    @Bean
     public EntityManagerFactory entityManagerFactory(
             DataSource dataSource,
             JpaVendorAdapter jpaVendorAdapter
@@ -42,17 +37,10 @@ public class DatabaseConfiguration {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setDatabase(Database.H2);
+        hibernateJpaVendorAdapter.setDatabase(Database.POSTGRESQL);
         hibernateJpaVendorAdapter.setShowSql(true);
         hibernateJpaVendorAdapter.setGenerateDdl(true);
         return hibernateJpaVendorAdapter;
     }
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(entityManagerFactory(dataSource(), jpaVendorAdapter()));
-        return txManager;
-
-    }
 }

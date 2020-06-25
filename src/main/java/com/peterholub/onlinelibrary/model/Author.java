@@ -9,9 +9,9 @@ import java.util.Set;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "author_name")
     private String authorName;
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private Set<Book> books;

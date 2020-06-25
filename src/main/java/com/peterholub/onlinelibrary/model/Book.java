@@ -8,20 +8,20 @@ import java.util.Objects;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "description")
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
     private Author author;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_content_id")
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private BookContent bookContent;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_image_id")
+    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
     private BookImage bookImage;
 
     public Long getId() {

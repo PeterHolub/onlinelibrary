@@ -8,9 +8,9 @@ import java.util.Objects;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "genre_id")
+    @Column(name = "id")
     private Long id;
-    @Column
+    @Column(name = "name")
     private String name;
 
     public Long getId() {

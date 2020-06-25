@@ -3,15 +3,16 @@ package com.peterholub.onlinelibrary.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "book_image")
+@Table(name = "books_image")
 public class BookImage {
     @Id
-    @Column(name = "book_image_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "bookImage")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
     private Book book;
-    @Column
+    @Column(name = "image")
     private byte[] image;
 
     public Long getId() {

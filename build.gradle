@@ -7,19 +7,18 @@ plugins {
 
 group = 'com.peterholub'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile('org.liquibase:liquibase-core')
-    compile('org.postgresql:postgresql:42.1.4.jre7')
     runtimeOnly('javax.xml.bind:jaxb-api:2.4.0-b180830.0359')
-    liquibaseRuntime('org.liquibase:liquibase-core:3.6.2')
+    liquibaseRuntime('org.liquibase:liquibase-core:3.8.0')
     liquibaseRuntime 'ch.qos.logback:logback-core:1.2.3'
     liquibaseRuntime 'ch.qos.logback:logback-classic:1.2.3'
-    liquibaseRuntime 'org.postgresql:postgresql:9.4.1211.jre7'
+    liquibaseRuntime 'org.postgresql:postgresql:42.2.5'
+    implementation 'org.postgresql:postgresql:42.2.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -31,21 +30,18 @@ dependencies {
     //testImplementation 'org.springframework.kafka:spring-kafka-test'
     //testImplementation 'org.springframework.security:spring-security-test'
 }
-def changeLog = "$projectDir/src/main/resources/db/changelog.xml"
-task('dev db') doLast {
-    println 'executing dev'
-    liquibase {
-        activities {
-            main {
-                changeLogFile changeLog
-                url 'jdbc:postgresql://localhost:3333/onlinelirary'
-                username 'postgres'
-                password 'postgres'
+def CHANGELOG = "$projectDir/src/main/resources/db/changelog.xml"
+ liquibase {
+     activities {
+            update {
+                changeLogFile CHANGELOG
+                url DATABASE_URL
+                username DATABASE_USERNAME
+                password DATABASE_PASSWORD
+                driver 'org.postgresql.Driver'
             }
         }
     }
-}
-
 test {
     useJUnitPlatform()
 }
