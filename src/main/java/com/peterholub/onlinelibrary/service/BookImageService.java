@@ -1,16 +1,14 @@
 package com.peterholub.onlinelibrary.service;
 
-
 import com.peterholub.onlinelibrary.model.BookImage;
 
 import java.io.Serializable;
 
 public interface BookImageService {
-    BookImage getBookGenre(Serializable id);
 
-    void createBookGenre(BookImage bookImage);
+    BookImage getBookImage(Serializable id);
 
-    void updateBookGenre(BookImage bookImage);
+    void saveBookImage(BookImage bookImage);
 
-    void deleteBookGenre(Serializable id);
+    void deleteBookImage(Serializable id);
 }

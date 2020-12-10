@@ -3,6 +3,8 @@ package com.peterholub.onlinelibrary.service.impl;
 import com.peterholub.onlinelibrary.model.User;
 import com.peterholub.onlinelibrary.repository.UserRepository;
 import com.peterholub.onlinelibrary.service.UserService;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,32 +14,29 @@ import java.util.List;
 
 @Service
 @Transactional
+@Getter
 public class UserServiceImpl implements UserService {
+
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public User getUser(Serializable id) {
-        return userRepository.getOne((Long) id);
+        return getUserRepository().getOne((Long) id);
     }
 
     @Override
-    public void createUser(User user) {
-        userRepository.save(user);
-    }
-
-    @Override
-    public void updateGroup(User user) {
-        userRepository.save(user);
+    public void saveUser(User user) {
+        getUserRepository().save(user);
     }
 
     @Override
     public void deleteGroup(Serializable id) {
-        userRepository.deleteById((Long) id);
+        getUserRepository().deleteById((Long) id);
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return getUserRepository().findAll();
     }
 }

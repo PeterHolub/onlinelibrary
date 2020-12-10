@@ -13,8 +13,9 @@ import java.util.List;
 @Service
 @Transactional
 public class GenreServiceImpl implements GenreService {
+
     @Autowired
-  private   GenreRepository genreRepository;
+    private GenreRepository genreRepository;
 
     @Override
     public Genre getGenre(Serializable id) {
@@ -22,12 +23,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public void createGenre(Genre genre) {
-        genreRepository.save(genre);
-    }
-
-    @Override
-    public void updateGenre(Genre genre) {
+    public void saveGenre(Genre genre) {
         genreRepository.save(genre);
     }
 

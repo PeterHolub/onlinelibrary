@@ -6,11 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface GenreService {
+
     Genre getGenre(Serializable id);
 
-    void createGenre(Genre genre);
-
-    void updateGenre(Genre genre);
+    void saveGenre(Genre genre);
 
     void deleteGenre(Serializable id);
 

@@ -6,11 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface BookService {
-    Book getBookGenre(Serializable id);
 
-    void createBook(Book book);
+    Book getBook(Serializable id);
 
-    void updateBook(Book book);
+    void saveBook(Book book);
 
     void deleteBook(Serializable id);
 

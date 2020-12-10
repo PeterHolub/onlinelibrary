@@ -6,11 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface GroupService {
+
     Role getGroup(Serializable id);
 
-    void createGroup(Role role);
-
-    void updateGroup(Role role);
+    void saveGroup(Role role);
 
     void deleteGroup(Serializable id);
 

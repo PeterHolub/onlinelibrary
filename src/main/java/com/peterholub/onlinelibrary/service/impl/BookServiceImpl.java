@@ -3,6 +3,7 @@ package com.peterholub.onlinelibrary.service.impl;
 import com.peterholub.onlinelibrary.model.Book;
 import com.peterholub.onlinelibrary.repository.BookRepository;
 import com.peterholub.onlinelibrary.service.BookService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,32 +13,28 @@ import java.util.List;
 
 @Service
 @Transactional
+@Getter
 public class BookServiceImpl implements BookService {
     @Autowired
    private BookRepository bookRepository;
 
     @Override
-    public Book getBookGenre(Serializable id) {
-        return bookRepository.getOne((Long) id);
+    public Book getBook(Serializable id) {
+        return getBookRepository().getOne((Long) id);
     }
 
     @Override
-    public void createBook(Book book) {
-        bookRepository.save(book);
-    }
-
-    @Override
-    public void updateBook(Book book) {
-        bookRepository.save(book);
+    public void saveBook(Book book) {
+        getBookRepository().save(book);
     }
 
     @Override
     public void deleteBook(Serializable id) {
-        bookRepository.deleteById((Long) id);
+        getBookRepository().deleteById((Long) id);
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return getBookRepository().findAll();
     }
 }

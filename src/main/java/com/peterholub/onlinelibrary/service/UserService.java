@@ -6,11 +6,10 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface UserService {
+
     User getUser(Serializable id);
 
-    void createUser(User user);
-
-    void updateGroup(User user);
+    void saveUser(User user);
 
     void deleteGroup(Serializable id);
 

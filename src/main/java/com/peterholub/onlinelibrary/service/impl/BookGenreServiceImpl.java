@@ -4,6 +4,7 @@ import com.peterholub.onlinelibrary.model.BookGenre;
 import com.peterholub.onlinelibrary.model.key.BookGenreKey;
 import com.peterholub.onlinelibrary.repository.BookGenreRepository;
 import com.peterholub.onlinelibrary.service.BookGenreService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,27 +13,24 @@ import java.io.Serializable;
 
 @Service
 @Transactional
+@Getter
 public class BookGenreServiceImpl implements BookGenreService {
+
     @Autowired
-   private BookGenreRepository bookGenreRepository;
+    private BookGenreRepository bookGenreRepository;
 
     @Override
     public BookGenre getBookGenre(Serializable id) {
-        return bookGenreRepository.getOne((BookGenreKey) id);
+        return getBookGenreRepository().getOne((BookGenreKey) id);
     }
 
     @Override
-    public void createBookGenre(BookGenre bookGenre) {
-        bookGenreRepository.save(bookGenre);
-    }
-
-    @Override
-    public void updateBookGenre(BookGenre bookGenre) {
-        bookGenreRepository.save(bookGenre);
+    public void saveBookGenre(BookGenre bookGenre) {
+        getBookGenreRepository().save(bookGenre);
     }
 
     @Override
     public void deleteBookGenre(Serializable id) {
-        bookGenreRepository.delete((BookGenre) id);
+        getBookGenreRepository().delete((BookGenre) id);
     }
 }

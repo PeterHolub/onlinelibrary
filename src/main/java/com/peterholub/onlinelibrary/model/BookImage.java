@@ -1,9 +1,14 @@
 package com.peterholub.onlinelibrary.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "books_image")
+@Getter
+@Setter
 public class BookImage {
     @Id
     @Column(name = "id")
@@ -14,28 +19,4 @@ public class BookImage {
     private Book book;
     @Column(name = "image")
     private byte[] image;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 }

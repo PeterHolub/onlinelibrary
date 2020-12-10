@@ -4,6 +4,7 @@ import com.peterholub.onlinelibrary.model.Favorites;
 import com.peterholub.onlinelibrary.model.key.FavoritesKey;
 import com.peterholub.onlinelibrary.repository.FavoritesRepository;
 import com.peterholub.onlinelibrary.service.FavoritesService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,27 +13,24 @@ import java.io.Serializable;
 
 @Service
 @Transactional
+@Getter
 public class FavoritesServiceImpl implements FavoritesService {
+
     @Autowired
-   private FavoritesRepository favoritesRepository;
+    private FavoritesRepository favoritesRepository;
 
     @Override
     public Favorites getFavorites(Serializable id) {
-        return favoritesRepository.getOne((FavoritesKey) id);
+        return getFavoritesRepository().getOne((FavoritesKey) id);
     }
 
     @Override
-    public void createFavorites(Favorites favorites) {
-        favoritesRepository.save(favorites);
-    }
-
-    @Override
-    public void updateFavorites(Favorites favorites) {
-        favoritesRepository.save(favorites);
+    public void saveFavorites(Favorites favorites) {
+        getFavoritesRepository().save(favorites);
     }
 
     @Override
     public void deleteFavorites(Serializable id) {
-        favoritesRepository.deleteById((FavoritesKey) id);
+        getFavoritesRepository().deleteById((FavoritesKey) id);
     }
 }
