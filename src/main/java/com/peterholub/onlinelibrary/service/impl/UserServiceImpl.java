@@ -5,6 +5,8 @@ import com.peterholub.onlinelibrary.repository.UserRepository;
 import com.peterholub.onlinelibrary.service.UserService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,11 +34,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(User user) {
         getUserRepository().save(user);
-    }
-
-    @Override
-    public void deleteGroup(Long id) {
-        getUserRepository().deleteById(id);
     }
 
     @Override

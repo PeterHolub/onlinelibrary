@@ -1,5 +1,7 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.peterholub.onlinelibrary.validation.ValidateAuthors;
+import com.peterholub.onlinelibrary.validation.ValidateGenres;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,11 +31,13 @@ public class Book {
     @ManyToMany
     @JoinTable(name = "book_authors", joinColumns = @JoinColumn(name = "book_id"),
     inverseJoinColumns = @JoinColumn(name = "author_id"))
+    @ValidateAuthors
     private Set<Author> authors;
 
     @ManyToMany
     @JoinTable(name = "book_genres", joinColumns = @JoinColumn(name = "book_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    @ValidateGenres
     private Set<Genre> genres;
 
     @JoinColumn(name = "book_id", insertable = false, updatable = false)

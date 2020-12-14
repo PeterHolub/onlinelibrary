@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -18,11 +17,14 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "name")
     @NotEmpty
-    private String groupName;
+    private String roleName;
 
     @OneToMany(mappedBy = "role")
     private Set<User> users;
 
+    @Column(name = "is_active")
+    private Boolean isActive = true;
 }

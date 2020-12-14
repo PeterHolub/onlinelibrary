@@ -1,9 +1,11 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.peterholub.onlinelibrary.validation.ValidateRole;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -27,6 +29,13 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
+    @ValidateRole
     private Role role;
 
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
+    @Column(name = "email")
+    @Email
+    private String email;
 }

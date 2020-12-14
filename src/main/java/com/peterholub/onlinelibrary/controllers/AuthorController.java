@@ -4,8 +4,8 @@ import com.peterholub.onlinelibrary.model.Author;
 import com.peterholub.onlinelibrary.service.AuthorService;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,42 +23,36 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping("/author/{id}")
+    @GetMapping(value = "/author/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Author> getAuthor(@PathVariable Long id) {
         Optional<Author> author = getAuthorService().getAuthor(id);
         return author.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
         .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/author/")
+    @PostMapping(value = "/author/", produces =
+    MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Author> saveAuthor(
-    @RequestBody @Valid Author author,
-    BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } else {
-            getAuthorService().saveAuthor(author);
-            return new ResponseEntity<>(author, HttpStatus.ACCEPTED);
-        }
+    @RequestBody @Valid Author author) {
+        getAuthorService().saveAuthor(author);
+        return new ResponseEntity<>(author, HttpStatus.ACCEPTED);
 
     }
 
-    @PutMapping("/author/{id}")
+    @PutMapping(value = "/author/{id}", consumes =
+    MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Author> updateAuthor(
-    @PathVariable Long id, @RequestBody @Valid Author author,
-    BindingResult bindingResult) {
+    @PathVariable Long id, @RequestBody @Valid Author author) {
         Optional<Author> authorFromDb = getAuthorService().getAuthor(id);
-        if (authorFromDb.isPresent() && !bindingResult.hasErrors()) {
+        if (authorFromDb.isPresent()) {
             getAuthorService().saveAuthor(author);
             return new ResponseEntity<>(author, HttpStatus.ACCEPTED);
-        } else if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
 
-    @DeleteMapping("/author/{id}")
+    @DeleteMapping(value = "/author/{id}")
     public ResponseEntity<Author> deleteAuthor(@PathVariable Long id) {
         Optional<Author> author = getAuthorService().getAuthor(id);
         if (author.isPresent()) {
