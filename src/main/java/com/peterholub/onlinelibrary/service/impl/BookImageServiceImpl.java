@@ -8,29 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.Serializable;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class BookImageServiceImpl implements BookImageService {
 
+    final private BookImageRepository bookImageRepository;
+
     @Autowired
-    private BookImageRepository bookImageRepository;
+    public BookImageServiceImpl(
+    BookImageRepository bookImageRepository) {
+        this.bookImageRepository = bookImageRepository;
+    }
 
     @Override
-    public BookImage getBookImage(Serializable id) {
-        return getBookImageRepository().getOne((Long) id);
+    public Optional<BookImage> getBookImage(Long bookId) {
+        return getBookImageRepository().findById(bookId);
     }
 
     @Override
     public void saveBookImage(BookImage bookImage) {
         getBookImageRepository().save(bookImage);
-    }
-
-    @Override
-    public void deleteBookImage(Serializable id) {
-        getBookImageRepository().deleteById((Long) id);
     }
 
 }

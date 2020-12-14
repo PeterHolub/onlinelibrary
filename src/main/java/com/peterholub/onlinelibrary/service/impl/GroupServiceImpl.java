@@ -8,20 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class GroupServiceImpl implements GroupService {
 
+    final private GroupRepository groupRepository;
+
     @Autowired
-    private GroupRepository groupRepository;
+    public GroupServiceImpl(
+    GroupRepository groupRepository) {
+        this.groupRepository = groupRepository;
+    }
 
     @Override
-    public Role getGroup(Serializable id) {
-        return getGroupRepository().getOne((Long) id);
+    public Optional<Role> getGroup(Long id) {
+        return getGroupRepository().findById(id);
     }
 
     @Override
@@ -30,8 +35,8 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void deleteGroup(Serializable id) {
-        getGroupRepository().deleteById((Long) id);
+    public void deleteGroup(Long id) {
+        getGroupRepository().deleteById(id);
     }
 
     @Override

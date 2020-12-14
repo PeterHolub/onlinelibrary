@@ -9,19 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.Serializable;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class FavoritesServiceImpl implements FavoritesService {
 
+    final private FavoritesRepository favoritesRepository;
+
     @Autowired
-    private FavoritesRepository favoritesRepository;
+    public FavoritesServiceImpl(
+    FavoritesRepository favoritesRepository) {
+        this.favoritesRepository = favoritesRepository;
+    }
 
     @Override
-    public Favorites getFavorites(Serializable id) {
-        return getFavoritesRepository().getOne((FavoritesKey) id);
+    public Optional<Favorites> getFavorites(FavoritesKey id) {
+        return getFavoritesRepository().findById(id);
     }
 
     @Override
@@ -30,7 +35,7 @@ public class FavoritesServiceImpl implements FavoritesService {
     }
 
     @Override
-    public void deleteFavorites(Serializable id) {
-        getFavoritesRepository().deleteById((FavoritesKey) id);
+    public void deleteFavorites(FavoritesKey id) {
+        getFavoritesRepository().deleteById(id);
     }
 }

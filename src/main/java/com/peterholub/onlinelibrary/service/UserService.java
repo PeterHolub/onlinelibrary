@@ -2,16 +2,16 @@ package com.peterholub.onlinelibrary.service;
 
 import com.peterholub.onlinelibrary.model.User;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
-    User getUser(Serializable id);
+    Optional<User> getUser(Long id);
 
     void saveUser(User user);
 
-    void deleteGroup(Serializable id);
+    void deleteGroup(Long id);
 
     List<User> getAllUsers();
 }

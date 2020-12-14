@@ -2,16 +2,16 @@ package com.peterholub.onlinelibrary.service;
 
 import com.peterholub.onlinelibrary.model.Book;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public interface BookService {
 
-    Book getBook(Serializable id);
+    Optional<Book> getBook(Long id);
 
     void saveBook(Book book);
 
-    void deleteBook(Serializable id);
+    void deleteBook(Long id);
 
     List<Book> getAllBooks();
 }

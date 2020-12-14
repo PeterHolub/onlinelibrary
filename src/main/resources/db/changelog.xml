@@ -63,56 +63,56 @@
     <changeSet id="9" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/009-create-books-genres-table.sql"
+                path="scripts/009-create-book-genres-table.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="10" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/010-create-constrains.sql"
+                path="scripts/010-create-book-authors-table.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="11" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/011-fill-authors-table.sql"
+                path="scripts/011-create-constrains.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="12" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/012-fill-users-and-roles.sql"
+                path="scripts/012-fill-authors-table.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="13" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/013-fill-genres-table.sql"
-                relativeToChangelogFile="true"/>
-    </changeSet>
-
-    <changeSet id="13" author="onlinelibrary">
-        <sqlFile
-                dbms="postgresql"
-                path="scripts/013-fill-genres-table.sql"
+                path="scripts/013-fill-users-and-roles.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="14" author="onlinelibrary">
         <sqlFile
                 dbms="postgresql"
-                path="scripts/014-fill-books-table.sql"
+                path="scripts/014-fill-genres-table.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="15" author="onlinelibrary">
+        <sqlFile
+                dbms="postgresql"
+                path="scripts/015-fill-books-table.sql"
+                relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="16" author="onlinelibrary">
         <createProcedure
                 dbms="postgresql"
-                path="scripts/015-fill-content.sql"
+                path="scripts/016-fill-content.sql"
                 relativeToChangelogFile="true"/>
     </changeSet>
 </databaseChangeLog>

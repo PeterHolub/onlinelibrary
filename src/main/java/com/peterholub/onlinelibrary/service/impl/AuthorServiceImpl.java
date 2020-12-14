@@ -10,18 +10,24 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class AuthorServiceImpl implements AuthorService {
 
+    final private AuthorRepository authorRepository;
+
     @Autowired
-    private AuthorRepository authorRepository;
+    public AuthorServiceImpl(
+    AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
-    public Author getAuthor(Serializable id) {
-        return getAuthorRepository().getOne((Long) id);
+    public Optional<Author> getAuthor(Long id) {
+        return getAuthorRepository().findById(id);
     }
 
     @Override
@@ -31,8 +37,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public void deleteAuthor(Serializable id) {
-        getAuthorRepository().deleteById((Long) id);
+    public void deleteAuthor(Long id) {
+        getAuthorRepository().deleteById(id);
     }
 
     @Override

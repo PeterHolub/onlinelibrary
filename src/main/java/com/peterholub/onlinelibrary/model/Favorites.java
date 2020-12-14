@@ -17,14 +17,17 @@ public class Favorites {
     @EmbeddedId
     @EqualsAndHashCode.Include
     private FavoritesKey key;
+
     @ManyToOne
     @MapsId("user_id")
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
     @MapsId("book_id")
     @JoinColumn(name = "book_id")
     private Book book;
+
     @Column(name = "user_rating")
     private Integer userRating;
 }

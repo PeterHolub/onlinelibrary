@@ -4,20 +4,31 @@ $$
         docker_Patch VARCHAR(50) := '/docker-entrypoint-initdb.d/';
     BEGIN
 
-        --Book genres table
-        INSERT INTO books_genres (book_id, genre_id)
+--Book genres table
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (1, 7);
-        INSERT INTO books_genres (book_id, genre_id)
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (1, 11);
-        INSERT INTO books_genres (book_id, genre_id)
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (2, 10);
-        INSERT INTO books_genres (book_id, genre_id)
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (2, 2);
-        INSERT INTO books_genres (book_id, genre_id)
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (3, 7);
-        INSERT INTO books_genres (book_id, genre_id)
+        INSERT INTO book_genres (book_id, genre_id)
         VALUES (3, 8);
         --------------------------------------------------------------------------------
+
+--Book authors table
+        INSERT INTO book_authors (book_id, author_id)
+        VALUES (1, 1);
+        INSERT INTO book_authors (book_id, author_id)
+        VALUES (2, 2);
+        INSERT INTO book_authors (book_id, author_id)
+        VALUES (3, 3);
+        --------------------------------------------------------------------------------
+
+
 
 --Books image table
         INSERT INTO books_image (book_id, image)

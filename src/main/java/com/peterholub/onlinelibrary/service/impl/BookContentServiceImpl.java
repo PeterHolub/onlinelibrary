@@ -9,27 +9,28 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class BookContentServiceImpl implements BookContentService {
 
+    final private BookContentRepository bookContentRepository;
+
     @Autowired
-    private BookContentRepository bookContentRepository;
+    public BookContentServiceImpl(
+    BookContentRepository bookContentRepository) {
+        this.bookContentRepository = bookContentRepository;
+    }
 
     @Override
-    public BookContent getBookContent(Serializable id) {
-        return getBookContentRepository().getOne((Long) id);
+    public Optional<BookContent> getBookContent(Long bookId) {
+        return getBookContentRepository().findById(bookId);
     }
 
     @Override
     public void saveBookContent(BookContent bookContent) {
         getBookContentRepository().save(bookContent);
-    }
-
-    @Override
-    public void deleteBookContent(Serializable id) {
-        getBookContentRepository().deleteById((Long) id);
     }
 }

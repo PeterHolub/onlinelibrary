@@ -2,13 +2,11 @@ package com.peterholub.onlinelibrary.service;
 
 import com.peterholub.onlinelibrary.model.BookContent;
 
-import java.io.Serializable;
+import java.util.Optional;
 
 public interface BookContentService {
 
-    BookContent getBookContent(Serializable id);
+    Optional<BookContent> getBookContent(Long bookId);
 
     void saveBookContent(BookContent bookContent);
-
-    void deleteBookContent(Serializable id);
 }

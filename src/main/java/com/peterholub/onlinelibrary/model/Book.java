@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 @Table(name = "books")
@@ -13,19 +15,33 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "book_id")
+    private Long book_id;
+
+    @NotEmpty
     @Column(name = "name")
     private String name;
+
+    @NotEmpty
     @Column(name = "description")
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id")
-    private Author author;
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY)
+
+    @ManyToMany
+    @JoinTable(name = "book_authors", joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
+
+    @ManyToMany
+    @JoinTable(name = "book_genres", joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<Genre> genres;
+
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private BookContent bookContent;
-    @OneToOne(mappedBy = "book", cascade = CascadeType.ALL,
-    fetch = FetchType.LAZY)
+
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private BookImage bookImage;
+
 }

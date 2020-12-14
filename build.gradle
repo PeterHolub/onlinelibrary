@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.4.RELEASE'
     runtimeOnly('javax.xml.bind:jaxb-api:2.4.0-b180830.0359')
     liquibaseRuntime('org.liquibase:liquibase-core:3.8.0')
     liquibaseRuntime 'ch.qos.logback:logback-core:1.2.3'

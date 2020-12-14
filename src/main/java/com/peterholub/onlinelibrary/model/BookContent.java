@@ -12,12 +12,10 @@ import javax.persistence.*;
 public class BookContent {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
-    private Book book;
+    @Column(name = "book_id")
+    @Basic(optional = false)
+    private Long bookId;
+
     @Column(name = "content")
     private byte[] content;
 

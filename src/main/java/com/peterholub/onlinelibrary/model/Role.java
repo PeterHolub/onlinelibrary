@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +19,10 @@ public class Role {
     @Column(name = "id")
     private Long id;
     @Column(name = "name")
+    @NotEmpty
     private String groupName;
+
     @OneToMany(mappedBy = "role")
     private Set<User> users;
+
 }

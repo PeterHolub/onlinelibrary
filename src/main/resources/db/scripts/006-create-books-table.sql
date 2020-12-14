@@ -1,9 +1,9 @@
 CREATE TABLE public.books
 (
-    id          SERIAL PRIMARY KEY,
+    book_id     SERIAL PRIMARY KEY,
     name        VARCHAR(250) NOT NULL,
-    description VARCHAR(1000),
-    author_id   INTEGER
+    description VARCHAR(1000)
+
 );
 ALTER TABLE public.books
     OWNER TO postgres;

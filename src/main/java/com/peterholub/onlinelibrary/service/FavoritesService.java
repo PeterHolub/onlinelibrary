@@ -1,15 +1,16 @@
 package com.peterholub.onlinelibrary.service;
 
 import com.peterholub.onlinelibrary.model.Favorites;
+import com.peterholub.onlinelibrary.model.key.FavoritesKey;
 
-import java.io.Serializable;
+import java.util.Optional;
 
 public interface FavoritesService {
 
-    Favorites getFavorites(Serializable id);
+    Optional<Favorites> getFavorites(FavoritesKey id);
 
     void saveFavorites(Favorites favorites);
 
-    void deleteFavorites(Serializable id);
+    void deleteFavorites(FavoritesKey id);
 
 }

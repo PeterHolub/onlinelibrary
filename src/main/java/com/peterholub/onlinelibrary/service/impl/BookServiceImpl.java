@@ -8,19 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @Getter
 public class BookServiceImpl implements BookService {
+
+    final private BookRepository bookRepository;
+
     @Autowired
-   private BookRepository bookRepository;
+    public BookServiceImpl(
+    BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @Override
-    public Book getBook(Serializable id) {
-        return getBookRepository().getOne((Long) id);
+    public Optional<Book> getBook(Long id) {
+        return getBookRepository().findById(id);
     }
 
     @Override
@@ -29,8 +35,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook(Serializable id) {
-        getBookRepository().deleteById((Long) id);
+    public void deleteBook(Long id) {
+        getBookRepository().deleteById(id);
     }
 
     @Override

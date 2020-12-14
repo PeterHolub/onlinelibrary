@@ -1,7 +1,6 @@
 CREATE TABLE public.books_content
 (
-    id      SERIAL PRIMARY KEY,
-    book_id INTEGER,
+    book_id INTEGER PRIMARY KEY UNIQUE,
     content bytea
 );
 ALTER TABLE public.books_content

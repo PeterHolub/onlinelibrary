@@ -7,19 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class GenreServiceImpl implements GenreService {
 
+    final private GenreRepository genreRepository;
+
     @Autowired
-    private GenreRepository genreRepository;
+    public GenreServiceImpl(
+    GenreRepository genreRepository) {
+        this.genreRepository = genreRepository;
+    }
 
     @Override
-    public Genre getGenre(Serializable id) {
-        return genreRepository.getOne((Long) id);
+    public Optional<Genre> getGenre(Long id) {
+        return genreRepository.findById(id);
     }
 
     @Override
@@ -28,8 +33,8 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public void deleteGenre(Serializable id) {
-        genreRepository.deleteById((Long) id);
+    public void deleteGenre(Long id) {
+        genreRepository.deleteById(id);
     }
 
     @Override

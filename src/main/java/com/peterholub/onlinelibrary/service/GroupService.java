@@ -2,16 +2,16 @@ package com.peterholub.onlinelibrary.service;
 
 import com.peterholub.onlinelibrary.model.Role;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 public interface GroupService {
 
-    Role getGroup(Serializable id);
+    Optional<Role> getGroup(Long id);
 
     void saveGroup(Role role);
 
-    void deleteGroup(Serializable id);
+    void deleteGroup(Long id);
 
     List<Role> getAllGroups();
 }

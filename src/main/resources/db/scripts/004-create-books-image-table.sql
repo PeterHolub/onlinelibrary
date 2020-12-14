@@ -1,7 +1,6 @@
 CREATE TABLE public.books_image
 (
-    id      SERIAL PRIMARY KEY,
-    book_id INTEGER,
+    book_id INTEGER PRIMARY KEY UNIQUE,
     image   bytea
 );
 ALTER TABLE public.books_image

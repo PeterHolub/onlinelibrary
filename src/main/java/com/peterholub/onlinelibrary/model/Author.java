@@ -1,11 +1,10 @@
 package com.peterholub.onlinelibrary.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
@@ -16,10 +15,11 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "author_id")
+    private Long author_id;
     @Column(name = "author_name")
+    @NotEmpty
     private String authorName;
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books;
 }
