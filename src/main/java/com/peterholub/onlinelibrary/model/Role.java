@@ -1,5 +1,7 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.util.Set;
 @Table(name = "roles")
 @Getter
 @Setter
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Role {
 
     @Id

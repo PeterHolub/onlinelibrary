@@ -1,5 +1,7 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +11,7 @@ import javax.persistence.*;
 @Table(name = "books_content")
 @Getter
 @Setter
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class BookContent {
 
     @Id

@@ -1,5 +1,7 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.util.Set;
 @Table(name = "authors")
 @Getter
 @Setter
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Author {
 
     @Id
@@ -20,6 +23,6 @@ public class Author {
     @Column(name = "author_name")
     @NotEmpty
     private String authorName;
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors",fetch = FetchType.LAZY)
     private Set<Book> books;
 }

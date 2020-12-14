@@ -1,11 +1,10 @@
 package com.peterholub.onlinelibrary;
 
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-        "com.peterholub.onlinelibrary"
+"com.peterholub.onlinelibrary",
 })
 public class OnlineLibraryApplication {
 

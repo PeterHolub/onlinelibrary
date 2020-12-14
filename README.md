@@ -28,3 +28,6 @@ Create and update tables with Liquibase and Gradle task
 ```
 gradle update
 ```
+### Swagger REST API documentation
+Swagger documentation available at:
+http://localhost:8080/swagger-ui.html

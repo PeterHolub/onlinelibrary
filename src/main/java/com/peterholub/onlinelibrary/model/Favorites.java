@@ -1,6 +1,8 @@
 package com.peterholub.onlinelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.peterholub.onlinelibrary.model.key.FavoritesKey;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +16,7 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Favorites {
 
     @EmbeddedId

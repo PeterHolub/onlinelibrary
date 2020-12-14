@@ -1,6 +1,7 @@
 package com.peterholub.onlinelibrary.model;
 
-import com.peterholub.onlinelibrary.validation.ValidateRole;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "users")
 @Getter
 @Setter
+@JsonIdentityInfo(generator = JSOGGenerator.class)
 public class User {
 
     @Id
@@ -29,7 +31,6 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    @ValidateRole
     private Role role;
 
     @Column(name = "is_active")

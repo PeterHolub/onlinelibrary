@@ -1,12 +1,16 @@
 package com.peterholub.onlinelibrary.controllers;
 
+import com.peterholub.onlinelibrary.exceptions.ValidationException;
 import com.peterholub.onlinelibrary.model.User;
 import com.peterholub.onlinelibrary.service.UserService;
+import com.peterholub.onlinelibrary.validation.UserValidator;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -19,11 +23,19 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final UserValidator userValidator;
 
     @Autowired
     public UserController(
-    UserService userService) {
+    UserService userService,
+    UserValidator userValidator) {
         this.userService = userService;
+        this.userValidator = userValidator;
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setValidator(userValidator);
     }
 
     @GetMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,8 +48,13 @@ public class UserController {
     @PostMapping(value = "/user/", consumes =
     MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> saveUser(
-    @RequestBody @Valid User user) {
-        getUserService().saveUser(user);
+    @RequestBody @Valid User user, BindingResult bindingResult)
+    throws ValidationException {
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException("Exception on User saving",
+            bindingResult.getAllErrors());
+        } else
+            getUserService().saveUser(user);
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
 
     }
@@ -45,15 +62,18 @@ public class UserController {
     @PutMapping(value = "/user/{id}", consumes =
     MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> updateUser(
-    @PathVariable Long id, @RequestBody @Valid User user) {
+    @PathVariable Long id, @RequestBody @Valid User user,
+    BindingResult bindingResult) throws ValidationException {
         Optional<User> userFromDb = getUserService().getUser(id);
-        if (userFromDb.isPresent()) {
-            getUserService().saveUser(user);
-            return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
-
-        } else
+        if (userFromDb.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+        } else if (bindingResult.hasErrors()) {
+            throw new ValidationException("Exception on User update",
+            bindingResult.getAllErrors());
+        } else
+            getUserService().saveUser(user);
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 
     @GetMapping(value = "/user/all", produces = MediaType.APPLICATION_JSON_VALUE)

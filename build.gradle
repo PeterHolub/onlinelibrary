@@ -8,13 +8,14 @@ plugins {
 
 group = 'com.peterholub'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '8'
+sourceCompatibility = '11'
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.4.RELEASE'
+    compile group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.4.8'
+    compile group: 'com.voodoodyne.jackson.jsog', name: 'jackson-jsog', version: '1.1.1'
     runtimeOnly('javax.xml.bind:jaxb-api:2.4.0-b180830.0359')
     liquibaseRuntime('org.liquibase:liquibase-core:3.8.0')
     liquibaseRuntime 'ch.qos.logback:logback-core:1.2.3'
@@ -23,24 +24,24 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.2.5'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    // implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
     runtimeOnly 'com.h2database:h2'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }
 def CHANGELOG = "$projectDir/src/main/resources/db/changelog.xml"
- liquibase {
-     activities {
-            update {
-                changeLogFile CHANGELOG
-                url DATABASE_URL
-                username DATABASE_USERNAME
-                password DATABASE_PASSWORD
-                driver 'org.postgresql.Driver'
-            }
+liquibase {
+    activities {
+        update {
+            changeLogFile CHANGELOG
+            url DATABASE_URL
+            username DATABASE_USERNAME
+            password DATABASE_PASSWORD
+            driver 'org.postgresql.Driver'
         }
     }
+}
 test {
     useJUnitPlatform()
 }
