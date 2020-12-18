@@ -1,6 +1,6 @@
-package com.peterholub.onlinelibrary.controllers;
+package com.peterholub.onlinelibrary.controller;
 
-import com.peterholub.onlinelibrary.exceptions.ValidationException;
+import com.peterholub.onlinelibrary.exception.ValidationException;
 import com.peterholub.onlinelibrary.model.User;
 import com.peterholub.onlinelibrary.service.UserService;
 import com.peterholub.onlinelibrary.validation.UserValidator;

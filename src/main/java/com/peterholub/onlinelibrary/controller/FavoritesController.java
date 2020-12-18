@@ -1,6 +1,6 @@
-package com.peterholub.onlinelibrary.controllers;
+package com.peterholub.onlinelibrary.controller;
 
-import com.peterholub.onlinelibrary.exceptions.ValidationException;
+import com.peterholub.onlinelibrary.exception.ValidationException;
 import com.peterholub.onlinelibrary.model.Favorites;
 import com.peterholub.onlinelibrary.model.key.FavoritesKey;
 import com.peterholub.onlinelibrary.service.FavoritesService;

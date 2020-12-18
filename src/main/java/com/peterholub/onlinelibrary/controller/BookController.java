@@ -1,6 +1,6 @@
-package com.peterholub.onlinelibrary.controllers;
+package com.peterholub.onlinelibrary.controller;
 
-import com.peterholub.onlinelibrary.exceptions.ValidationException;
+import com.peterholub.onlinelibrary.exception.ValidationException;
 import com.peterholub.onlinelibrary.model.Book;
 import com.peterholub.onlinelibrary.model.BookContent;
 import com.peterholub.onlinelibrary.model.BookImage;

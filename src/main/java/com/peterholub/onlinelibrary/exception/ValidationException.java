@@ -1,4 +1,4 @@
-package com.peterholub.onlinelibrary.exceptions;
+package com.peterholub.onlinelibrary.exception;
 
 import org.springframework.validation.ObjectError;
 

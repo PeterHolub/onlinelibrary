@@ -1,4 +1,4 @@
-package com.peterholub.onlinelibrary.controllers;
+package com.peterholub.onlinelibrary.controller;
 
 import com.peterholub.onlinelibrary.model.Role;
 import com.peterholub.onlinelibrary.service.RoleService;

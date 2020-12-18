@@ -1,6 +1,6 @@
-package com.peterholub.onlinelibrary.controllers;
+package com.peterholub.onlinelibrary.controller;
 
-import com.peterholub.onlinelibrary.exceptions.ValidationException;
+import com.peterholub.onlinelibrary.exception.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
